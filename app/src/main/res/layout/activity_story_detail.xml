@@ -15,12 +15,13 @@
 
         <ImageView
             android:id="@+id/image"
+            android:contentDescription="@string/imagedetail"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_marginBottom="8dp"
             android:scaleType="fitXY"
             tools:src="@tools:sample/avatars"
-            android:transitionName="profile "/>
+            android:transitionName="profile"/>
 
         <TextView
             android:id="@+id/title"

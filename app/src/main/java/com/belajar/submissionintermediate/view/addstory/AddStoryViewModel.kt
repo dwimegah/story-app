@@ -18,7 +18,6 @@ class AddStoryViewModel : ViewModel() {
     val story: LiveData<CommonResponse> = _story
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
 
     fun postStory(token: String, photo: MultipartBody.Part, description: RequestBody) {
         _isLoading.value = true

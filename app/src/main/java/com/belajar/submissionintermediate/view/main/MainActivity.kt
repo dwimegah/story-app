@@ -14,16 +14,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.belajar.submissionintermediate.R
-import com.belajar.submissionintermediate.data.response.Story
 import com.belajar.submissionintermediate.databinding.ActivityMainBinding
 import com.belajar.submissionintermediate.view.ViewModelFactory
 import com.belajar.submissionintermediate.view.addstory.AddStoryActivity
+import com.belajar.submissionintermediate.view.maps.MapsActivity
 import com.belajar.submissionintermediate.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
+
+    private val storyViewModel by viewModels<StoryViewModel> {
+        StoryModelFactory(this)
+    }
+
     private lateinit var binding: ActivityMainBinding
     private var token = ""
 
@@ -42,21 +47,30 @@ class MainActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
 
         viewModel.getSession().observe(this) { user ->
-            binding.progressBar.visibility = View.GONE
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
                 token = user.token
-                viewModel.getStories(token)
-                viewModel.stories.observe(this) {
-                    setData(it)
-                }
 
                 val layoutManager = LinearLayoutManager(this)
                 binding.recycleView.layoutManager = layoutManager
                 val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
                 binding.recycleView.addItemDecoration(itemDecoration)
+
+                storyViewModel.getStories(token).observe(this) {
+                    val adapter = MainAdapter()
+                    adapter.submitData(lifecycle, it)
+                    binding.recycleView.adapter = adapter
+                }
+
+                storyViewModel.isLoading.observe(this) {
+                    if (it) {
+                        binding.progressBar.visibility = View.VISIBLE
+                    } else {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                }
             }
         }
 
@@ -75,11 +89,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setData(data: List<Story>) {
-        val adapter = MainAdapter()
-        adapter.submitList(data)
-        binding.recycleView.adapter = adapter
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_list, menu)
         return super.onCreateOptionsMenu(menu)
@@ -87,6 +96,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.maps -> {
+                startActivity(Intent(this, MapsActivity::class.java))
+            }
             R.id.setting -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }

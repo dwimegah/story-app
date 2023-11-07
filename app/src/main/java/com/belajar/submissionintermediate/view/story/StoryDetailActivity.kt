@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.belajar.submissionintermediate.data.response.Story
+import com.belajar.submissionintermediate.data.database.StoryItem
 import com.belajar.submissionintermediate.databinding.ActivityStoryDetailBinding
 import com.bumptech.glide.Glide
 
 
 class StoryDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStoryDetailBinding
-    private var data: Story? = null;
+    private var data: StoryItem? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +23,9 @@ class StoryDetailActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            data = intent.getParcelableExtra("dataStories", Story::class.java)
+            data = intent.getParcelableExtra("dataStories", StoryItem::class.java)
         } else {
-            data = intent.getParcelableExtra<Story>("dataStories")
+            data = intent.getParcelableExtra<StoryItem>("dataStories")
         }
 
         binding.title.text = "${data?.name}"

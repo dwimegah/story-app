@@ -36,4 +36,17 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): Call<CommonResponse>
+
+    @GET("stories")
+    fun getStoriesWithLocation(
+        @Header("Authorization") token: String,
+        @Query("location") location : Int = 1,
+    ): Call<StoriesResponse>
+
+    @GET("stories")
+    suspend fun getStoriesWithPaging(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 5
+    ) : StoriesResponse
 }

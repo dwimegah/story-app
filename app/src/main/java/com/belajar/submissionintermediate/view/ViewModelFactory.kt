@@ -3,7 +3,7 @@ package com.belajar.submissionintermediate.view
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.belajar.submissionintermediate.data.UserRepository
+import com.belajar.submissionintermediate.data.repository.UserRepository
 import com.belajar.submissionintermediate.di.Injection
 import com.belajar.submissionintermediate.view.login.LoginViewModel
 import com.belajar.submissionintermediate.view.main.MainViewModel

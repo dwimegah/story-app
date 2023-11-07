@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.belajar.submissionintermediate.data.UserRepository
+import com.belajar.submissionintermediate.data.repository.UserRepository
 import com.belajar.submissionintermediate.data.pref.UserModel
 import com.belajar.submissionintermediate.data.response.LoginResponse
 import com.belajar.submissionintermediate.data.retrofit.ApiConfig

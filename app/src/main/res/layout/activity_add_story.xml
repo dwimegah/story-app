@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/imageStory"
+        android:contentDescription="@string/imagestory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@+id/textDescription"
         app:layout_constraintEnd_toEndOf="parent"

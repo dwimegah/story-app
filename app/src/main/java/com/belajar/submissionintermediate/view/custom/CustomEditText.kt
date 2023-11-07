@@ -34,7 +34,7 @@ class CustomEditText : AppCompatEditText, View.OnTouchListener {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if ((p0?.length ?: 0) < 8) {
-                    setError("Password must contain 8 characters", errorIcon)
+                    setError(context.getString(R.string.passerror), errorIcon)
                 }
             }
 

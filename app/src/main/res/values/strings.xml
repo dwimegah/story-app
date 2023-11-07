@@ -13,4 +13,11 @@
     <string name="logout">Logout</string>
     <string name="desc">Description</string>
     <string name="setting">Setting</string>
+    <string name="maps">Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="imagestory">Image Story</string>
+    <string name="logo">Logo</string>
+    <string name="imagedetail">Image Detail</string>
+    <string name="passerror">Password must contain 8 characters</string>
+    <string name="emailerror">Email not valid</string>
 </resources>
